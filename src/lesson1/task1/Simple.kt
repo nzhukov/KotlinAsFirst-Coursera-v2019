@@ -52,16 +52,25 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
 fun main(args: Array<String>) {
     val x = 7
     val result = sqr(x = x)
+//    println("$x * $x = $result")
 
-    println("$x * $x = $result")
-    //    val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
-//    println("Root product: $x1x2")
     val res2 = angleInRadian(36, 14, 35)
-    println("$res2")
+//    println("$res2")
 
     val res3 = thirdDigit(23456)
+//    println("$res3")
 
-    println("$res3")
+    val res4 = seconds(8, 20, 35)
+//    println("$res4")
+
+    val res5 = lengthInMeters(8, 2, 11)
+//    println("$res5")
+
+    val res6 = trackLength(3.0, 0.0, 0.0, 4.0)
+    println("$res6")
+
+    val res7 = numberRevert(478)
+    println("$res7")
 }
 
 /**
@@ -70,7 +79,8 @@ fun main(args: Array<String>) {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+// DONE
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = seconds + minutes * 60 + hours * sqr(60)
 
 /**
  * Тривиальная
@@ -79,7 +89,11 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+// DONE
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double =
+    ((sagenes * 48)
+            + (arshins * 48 / 3)
+            + vershoks) * 4.445 / 100
 
 /**
  * Тривиальная
@@ -87,6 +101,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
+// DONE
 fun angleInRadian(deg: Int, min: Int, sec: Int): Double =
     (deg * PI / 180) +
             ((min * PI) / (180 * 60)) +
@@ -98,7 +113,8 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double =
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
+// DONE
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt(sqr(x2 - x1) + sqr(y2 - y1))
 
 /**
  * Простая
@@ -132,4 +148,6 @@ fun accountInThreeYears(initial: Int, percent: Int): Double = TODO()
  * Пользователь задает целое трехзначное число (например, 478).
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
-fun numberRevert(number: Int): Int = TODO()
+// Python (n % 10)*100 + ((n // 10) % 10)*10  + (n // 100)
+// DONE
+fun numberRevert(number: Int): Int = (number % 10) * 100 + ((number / 10) % 10) * 10 + number / 100
