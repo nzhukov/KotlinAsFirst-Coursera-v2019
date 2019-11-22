@@ -3,7 +3,6 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
-import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -181,15 +180,11 @@ fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
         lenInt = d - c
     } else if (c <= a && b <= d) {
         lenInt = b - a
-    } else if (true) { // частичное вхождение вариант 1
-        // Todo
-        lenInt = 100500
-    } else if (true) { // частичное вхождение вариант 2
-        // Todo
-        lenInt = 100500
+    } else if (a <= c && b <= d) {
+        lenInt = b - c
+    } else if (c <= a && d <= b) {
+        lenInt = d - a
     } else
         lenInt = -1
-
-
     return lenInt
 }
