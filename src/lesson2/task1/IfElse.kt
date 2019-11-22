@@ -3,6 +3,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -57,20 +58,24 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
     return -sqrt(y3)           // 7
 }
 
+fun main(args: Array<String>) {
+
+//    val res = ageDescription(132)
+//    println("${res}")
+    val res = segmentLength(1, 2, 3, 4)
+    println("${res}")
+
+    val res2 = segmentLength(5, 7, 1, 3)
+    println("${res2}")
+
+}
+
 /**
  * Простая
  *
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun main(args: Array<String>) {
-
-    val res = ageDescription(132)
-
-    println("${res}")
-}
-
-
 fun ageDescription(age: Int): String {
 
     var ageString = age.toString()
@@ -165,4 +170,26 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    val lenInt: Int
+//    segmentLength(3, 6, 0, 9)
+    if (a > d || b < c) {
+        lenInt = -1
+    } else if (c == b || a == d) {
+        lenInt = 0
+    } else if (a <= c && d <= b) {
+        lenInt = d - c
+    } else if (c <= a && b <= d) {
+        lenInt = b - a
+    } else if (true) { // частичное вхождение вариант 1
+        // Todo
+        lenInt = 100500
+    } else if (true) { // частичное вхождение вариант 2
+        // Todo
+        lenInt = 100500
+    } else
+        lenInt = -1
+
+
+    return lenInt
+}
