@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import lesson1.task1.sqr
 import kotlin.math.sqrt
 
 /**
@@ -164,7 +165,17 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var r = 0
+    var t = n
+
+    while (t != 0) {
+        r *= 10
+        r += t % 10
+        t /= 10
+    }
+    return r
+}
 
 /**
  * Средняя
@@ -175,7 +186,15 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+
+fun isPalindrome(n: Int): Boolean {
+    if (n < 10) return true
+    else {
+        if (revert(n) == n)
+            return true
+    }
+    return false
+}
 
 /**
  * Средняя
@@ -187,6 +206,39 @@ fun isPalindrome(n: Int): Boolean = TODO()
  */
 fun hasDifferentDigits(n: Int): Boolean = TODO()
 
+
+fun main(args: Array<String>) {
+    var res = squareSequenceDigit(3)
+//    println("Результат: ${res}")
+
+    println(
+        "Результат 1, 10, 100, 1000, 10000, 100000 :" +
+                " ${countDigits(1)}," +
+                " ${countDigits(10)}," +
+                " ${countDigits(100)}," +
+                " ${countDigits(1000)}," +
+                " ${countDigits(10000)}," +
+                " ${countDigits(100000)}"
+    )
+}
+
+
+fun countDigits(n: Int): Int {
+    var numberLength = 1
+    var number = n
+
+    if (number >= 10) {
+
+        do {
+            numberLength += 1
+
+            number /= 10
+
+        } while (number >= 10)
+    }
+    return numberLength
+}
+
 /**
  * Сложная
  *
@@ -196,7 +248,24 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+
+    if (n <= 3) return sqr(n)
+    else {
+//        var number = n - 3
+//        var i = 4
+//        do {
+//            var sq_number = sqr(i)
+//            if (number < countDigits(sq_number)) {
+//
+//            }
+//
+//        } while ()
+        // TODO
+
+    }
+    return 0
+}
 
 /**
  * Сложная
