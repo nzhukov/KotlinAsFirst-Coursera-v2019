@@ -3,6 +3,7 @@
 package lesson3.task1
 
 import lesson1.task1.sqr
+import kotlin.math.abs
 import kotlin.math.sqrt
 
 /**
@@ -68,7 +69,21 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var numberLength = 1
+    var number = abs(n)
+
+    if (number > 9) {
+
+        do {
+            numberLength += 1
+
+            number /= 10
+
+        } while (number > 9)
+    }
+    return numberLength
+}
 
 /**
  * Простая
@@ -207,22 +222,6 @@ fun isPalindrome(n: Int): Boolean {
 fun hasDifferentDigits(n: Int): Boolean = TODO()
 
 
-fun main(args: Array<String>) {
-    var res = squareSequenceDigit(3)
-//    println("Результат: ${res}")
-
-    println(
-        "Результат 1, 10, 100, 1000, 10000, 100000 :" +
-                " ${countDigits(1)}," +
-                " ${countDigits(10)}," +
-                " ${countDigits(100)}," +
-                " ${countDigits(1000)}," +
-                " ${countDigits(10000)}," +
-                " ${countDigits(100000)}"
-    )
-}
-
-
 fun countDigits(n: Int): Int {
     var numberLength = 1
     var number = n
@@ -239,6 +238,15 @@ fun countDigits(n: Int): Int {
     return numberLength
 }
 
+fun getDigitByNumber(n: Int, i: Int): Int {
+    if (n < 10)
+        return n
+    if (n >= 10 && i == 1)
+        return n % 10
+    else
+        return getDigitByNumber(n / 10, i - 1)
+}
+
 /**
  * Сложная
  *
@@ -252,19 +260,24 @@ fun squareSequenceDigit(n: Int): Int {
 
     if (n <= 3) return sqr(n)
     else {
-//        var number = n - 3
-//        var i = 4
-//        do {
-//            var sq_number = sqr(i)
-//            if (number < countDigits(sq_number)) {
-//
-//            }
-//
-//        } while ()
-        // TODO
+        var indexDigit = 4
+        var i = 3
+        do {
+            i += 1
 
+            val sqNumber = sqr(i)
+            val offset = countDigits(sqNumber)
+            if (n in indexDigit until (indexDigit + offset)) {
+                println("${sqNumber} : ${indexDigit + offset - n} = (${indexDigit} + ${offset} - ${n})")
+                return getDigitByNumber(n = sqNumber, i = indexDigit + offset - n)
+
+            } else {
+                indexDigit += offset
+            }
+
+
+        } while (true)
     }
-    return 0
 }
 
 /**
