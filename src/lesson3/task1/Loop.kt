@@ -91,7 +91,16 @@ fun digitNumber(n: Int): Int {
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var x = 1
+    var y = 0
+
+    for (i in 0 until n) {
+        x += y
+        y = x - y
+    }
+    return y
+}
 
 /**
  * Простая
@@ -268,7 +277,7 @@ fun squareSequenceDigit(n: Int): Int {
             val sqNumber = sqr(i)
             val offset = countDigits(sqNumber)
             if (n in indexDigit until (indexDigit + offset)) {
-                println("${sqNumber} : ${indexDigit + offset - n} = (${indexDigit} + ${offset} - ${n})")
+//                println("${sqNumber} : ${indexDigit + offset - n} = (${indexDigit} + ${offset} - ${n})")
                 return getDigitByNumber(n = sqNumber, i = indexDigit + offset - n)
 
             } else {
@@ -289,4 +298,21 @@ fun squareSequenceDigit(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    if (n <= 6) return fib(n)
+    else {
+        var indexDigit = 7
+        var i = 6
+        do {
+            i += 1
+
+            val fibNumber = fib(i)
+            val offset = countDigits(fibNumber)
+            if (n in indexDigit until (indexDigit + offset)) {
+                return getDigitByNumber(n = fibNumber, i = indexDigit + offset - n)
+            } else {
+                indexDigit += offset
+            }
+        } while (true)
+    }
+}
