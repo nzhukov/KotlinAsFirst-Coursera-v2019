@@ -133,7 +133,16 @@ fun mean(list: List<Double>): Double = if (list.isNotEmpty()) list.sum() / list.
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+
+    if (list.size != 0) {
+        val arMean = list.sum() / list.size
+        for (i in 0 until list.size) {
+            list[i] -= arMean
+        }
+    }
+    return list
+}
 
 /**
  * Средняя
@@ -166,7 +175,17 @@ fun polynom(p: List<Int>, x: Int): Int =
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
+fun accumulate(list: MutableList<Int>): MutableList<Int> {
+    if (list.size != 0) {
+        var sumList = mutableListOf<Int>()
+
+        for (i in 0 until list.size) {
+            sumList.add(list[i])
+            list[i] = sumList.sum()
+        }
+    }
+    return list
+}
 
 /**
  * Средняя
@@ -175,7 +194,44 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
+
+fun isPrime(n: Int): Boolean {
+    if (n < 2) return false
+    if (n == 2) return true
+    if (n % 2 == 0) return false
+    for (m in 3 until sqrt(n.toDouble()).toInt() step 2) {
+        if (n % m == 0) return false
+    }
+    return true
+}
+
+fun factorize(n: Int): List<Int> {
+
+    val resList = mutableListOf<Int>()
+    var res = n
+
+    while (res > 1)
+        if (isPrime(res)) {
+            resList.add(res)
+            res /= res
+        } else {
+            if (res % 2 == 0) {
+                resList.add(2)
+                res /= 2
+            }
+            var m = 3
+            while (m < sqrt(n.toDouble()).toInt()) {
+                if (res % m == 0) {
+                    resList.add(m)
+                    res /= m
+                    continue
+                }
+                m += 2
+            }
+        }
+
+    return resList.sorted()
+}
 
 /**
  * Сложная
@@ -184,7 +240,8 @@ fun factorize(n: Int): List<Int> = TODO()
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String =
+    if (isPrime(n)) "$n" else factorize(n).joinToString(separator = "*")
 
 /**
  * Средняя
